@@ -26,8 +26,8 @@ v1h1sir <- function(times, inits, params){
 }
 
 inits <- c(45,5,0,2700,300)
-params <- c(bh = 0.01, muh = 0.01, bv = 0.01, muv = 0.01, f = 0.25, gammah = 0.1, Thv = 0.5, Tvh = 0.5)
-times <- seq(0,1000,1)
+params <- c(bh = 0.01, muh = 0.01, bv = 0.01, muv = 0.01, f = 0.125, gammah = 0.1, Thv = 0.5, Tvh = 0.5)
+times <- seq(0,100,1)
 out <- as.data.frame(ode(inits, times, v1h1sir, params ))
 par(mfrow=c(1,2))
 
