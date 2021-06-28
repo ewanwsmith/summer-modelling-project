@@ -15,7 +15,7 @@ v1h1sir <- function(times, inits, params){
   with(as.list(c(params)), {
     
     dSh <- bh * Nh - f / Nh * Thv * Iv * Sh - muh * Sh 
-    dIh <- f / Nh * Thv * Iv * Sh - muh - gammah * Ih
+    dIh <- f / Nh * Thv * Iv * Sh - muh * Ih - gammah * Ih
     dRh <- gammah * Ih - muh * Rh
     dSv <- bv * Nv - f / Nh * Tvh * Sv * Ih - muv * Sv
     dIv <- f / Nh * Tvh * Sv * Ih - muv * Iv
@@ -27,8 +27,11 @@ v1h1sir <- function(times, inits, params){
 
 inits <- c(45,5,0,2700,300)
 params <- c(bh = 0.01, muh = 0.01, bv = 0.01, muv = 0.01, f = 0.25, gammah = 0.1, Thv = 0.5, Tvh = 0.5)
-
+times <- seq(0,1000,1)
+out <- as.data.frame(ode(inits, times, v1h1sir, params ))
 par(mfrow=c(1,2))
+
+
 plot(out$`1` ~out$time, type='l', col='dark green',
     xlab= 'time', ylab='N', ylim = c(0,60))
 lines(out$`2`~out$time, col='orange')
