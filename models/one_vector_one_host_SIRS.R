@@ -1,7 +1,7 @@
 library(deSolve)
 v1h1sir <- function(times, inits, params){
   
-  Sh <- inits[1] #suspectibe host
+  Sh <- inits[1] #susceptible host
   Ih <- inits[2] #infected host
   Rh <- inits[3] #recovered host
   Sv <- inits[4] #susceptible vector
