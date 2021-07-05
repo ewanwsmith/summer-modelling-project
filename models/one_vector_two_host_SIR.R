@@ -12,31 +12,32 @@ v1h2sir <- function(times, inits, params){
   
   Nh1 <- Sh1 + Ih1 + Rh1 #total host 1 popn
   Nh2 <- Sh2 + Ih2 + Rh2 #total host 2 popn
+  Nh <- Nh1 + Nh2
   Nv <- Sv + Iv #total vector popn
   
   
   
   with(as.list(c(params)), {
     
-    dSh1 <- bh1 * Nh1 - fh1 / Nh1 * Th1v * Iv * Sh1 - muh1 * Sh1 
-    dIh1 <- fh1 / Nh1 * Th1v * Iv * Sh1 - muh1 * Ih1 - gammah1 * Ih1
+    dSh1 <- bh1 * Nh1 - fh1 / Nh * Th1v * Iv * Sh1 - muh1 * Sh1 
+    dIh1 <- fh1 / Nh * Th1v * Iv * Sh1 - muh1 * Ih1 - gammah1 * Ih1
     dRh1 <- gammah1 * Ih1 - muh1 * Rh1
 
-    dSh2 <- bh2 * Nh2 - fh2 / Nh2 * Th2v * Iv * Sh2 - muh2 * Sh2
-    dIh2 <- fh2 / Nh2 * Th2v * Iv * Sh2 - muh2 * Ih2 - gammah2* Ih2
+    dSh2 <- bh2 * Nh2 - fh2 / Nh * Th2v * Iv * Sh2 - muh2 * Sh2
+    dIh2 <- fh2 / Nh * Th2v * Iv * Sh2 - muh2 * Ih2 - gammah2* Ih2
     dRh2 <- gammah2 * Ih2 - muh2 * Rh2 
 
-    dSv <- bv * Nv - fh1 / Nh1 * Tvh1 * Sv * Ih1 - fh2 / Nh2 * Tvh2 * Sv * Ih2 - muv * Sv
-    dIv <- fh1 / Nh1 * Tvh1 * Sv * Ih1 - fh2 / Nh2 * Tvh2 * Sv * Ih2 - muv * Iv
+    dSv <- bv * Nv - fh1 / Nh * Tvh1 * Sv * Ih1 - fh2 / Nh * Tvh2 * Sv * Ih2 - muv * Sv
+    dIv <- fh1 / Nh * Tvh1 * Sv * Ih1 - fh2 / Nh * Tvh2 * Sv * Ih2 - muv * Iv
     
     return(list(c(dSh1, dIh1, dRh1, dSh2, dIh2, dRh2, dSv, dIv)))
   })
   
 }
 
-inits <- c(45,5,0,50,0,0,2700,300)
-params <- c(bh1 = 0.02, muh1 = 0.01, bv = 0.02, muv = 0.01, fh1 = 0.25, gammah1 = 0.1, Th1v = 0.1, Tvh1 = 0.2,
-bh2 = 0.02, muh2 = 0.01, fh2 = 0.125, gammah2 = 0.1, Th2v = 0.5, Tvh2 = 0.5)
+inits <- c(49,1,0,0,0,0,2700,300)
+params <- c(bh1 = 0, muh1 = 0, bv = 0, muv = 0, fh1 = 0.25, gammah1 = 0.1, Th1v = 0.1, Tvh1 = 0.2,
+bh2 = 0, muh2 = 0, fh2 = 0.125, gammah2 = 0.1, Th2v = 0.5, Tvh2 = 0.5)
 # b = birth rate, m = death rate, f =  vector biting rate, gamma = recovery rate
 # Thv = Pr(host infected after bite from infected vector), Thv = Pr(vector infected after bite of infected host)
 times <- seq(0,100,1)
