@@ -1,5 +1,5 @@
 library(deSolve)
-v1h2sir <- function(times, inits, params){
+v1h2seir <- function(times, inits, params){
   
   Sh1 <- inits[1] #susceptible host 1
   Eh1 <- inits[2] #exposed host 1
@@ -45,7 +45,7 @@ bh2 = 0.01, muh2 = 0.01, fh2 = 0.125, gammah2 = 0.1, Th2v = 0.5, Tvh2 = 0.5, eps
 # Thv = Pr(host infected after bite from infected vector), Thv = Pr(vector infected after bite of infected host)
 # epsilon = rate at which exposed hosts become infectious
 times <- seq(0,100,1)
-out <- as.data.frame(ode(inits, times, v1h2sir, params ))
+out <- as.data.frame(ode(inits, times, v1h2seir, params ))
 par(mfrow=c(1,3))
 
 
