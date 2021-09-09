@@ -9,12 +9,12 @@ v1h3seir <- function(times, inits, params){
   Eh2 <- inits[6] #exposed host 2
   Ih2 <- inits[7] #infected host 2
   Rh2 <- inits[8] #recovered host 2
-  Sh3 <- inits[1] #susceptible host 3
-  Eh3 <- inits[2] #exposed host 3
-  Ih3 <- inits[3] #infected host 3
-  Rh3 <- inits[4] #recovered host 3
-  Sv <- inits[9] #susceptible vector
-  Iv <- inits[10] #infected vector
+  Sh3 <- inits[9] #susceptible host 3
+  Eh3 <- inits[10] #exposed host 3
+  Ih3 <- inits[11] #infected host 3
+  Rh3 <- inits[12] #recovered host 3
+  Sv <- inits[13] #susceptible vector
+  Iv <- inits[14] #infected vector
   
   Nh1 <- Sh1 + Eh1 + Ih1 + Rh1 #total host 1 popn
   Nh2 <- Sh2 + Eh2 + Ih2 + Rh2 #total host 2 popn

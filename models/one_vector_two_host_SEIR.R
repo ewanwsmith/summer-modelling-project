@@ -63,4 +63,4 @@ lines(out$`8`~out$time, col='blue')
 
 plot(out$`9`~out$time, type = 'l', col= 'dark green',
     xlab= 'time', ylab='N', ylim = c(0,4000))
-    lines(out$`10`~out$time, col= 'red')
+lines(out$`10`~out$time, col= 'red')
