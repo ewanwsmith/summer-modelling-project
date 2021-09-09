@@ -19,6 +19,7 @@ v1h3seir <- function(times, inits, params){
   Nh1 <- Sh1 + Eh1 + Ih1 + Rh1 #total host 1 popn
   Nh2 <- Sh2 + Eh2 + Ih2 + Rh2 #total host 2 popn
   Nh3 <- Sh3 + Eh3 + Ih3 + Rh3 #total host 3 popn 
+  Nh <- Nh1 + Nh2 + Nh3 #total hosts popn
   Nv <- Sv + Iv #total vector popn
   
   
@@ -39,8 +40,8 @@ v1h3seir <- function(times, inits, params){
     dIh3 <- epsilon3 * Eh3 - muh3 * Ih3 - gammah3 * Ih3
     dRh3 <- gammah3 * Ih3 - muh3 * Rh3 
 
-    dSv <- bv * Nv - fh1 / Nh1 * Tvh1 * Sv * Ih1 - fh2 / Nh2 * Tvh2 * Sv * Ih2 - muv * Sv
-    dIv <- fh1 / Nh1 * Tvh1 * Sv * Ih1 - fh2 / Nh2 * Tvh2 * Sv * Ih2 - muv * Iv
+    dSv <- bv * Nv - fh1 / Nh * Tvh1 * Sv * Ih1 - fh2 / Nh * Tvh2 * Sv * Ih2 - fh3 / Nh * Tvh3 * Sv * Ih3 - muv * Sv
+    dIv <- fh1 / Nh * Tvh1 * Sv * Ih1 + fh2 / Nh * Tvh2 * Sv * Ih2 - muv * Iv + fh3 / Nh * Tvh3 * Sv * Ih3 - muv * Iv
     
     return(list(c(dSh1, dEh1, dIh1, dRh1, dSh2, dEh2, dIh2, dRh2, dSh3, dEh3, dIh3, dRh3, dSv, dIv)))
   })
